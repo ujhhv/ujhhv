@@ -1,0 +1,367 @@
+%----------------------------------------
+%-----     Enthält alle Pakete     -----
+%----------------------------------------
+
+\usepackage[ngerman]{babel} 
+\usepackage[utf8]{inputenc}              
+\usepackage[T1]{fontenc}
+\usepackage{microtype}
+\usepackage[numbers]{natbib}
+%%%% Hier kann zwischen Schtiftarten umgestellt werden
+\usepackage{palatino}
+\usepackage{nth}
+\usepackage{calc}  
+\usepackage{enumitem} 
+\setlist[description]{leftmargin=\parindent,labelindent=\parindent}
+%\usepackage{lmodern}
+\usepackage[format=plain,
+			indention=0cm]{caption}
+
+
+
+
+%===============================================================================
+%%% Pakete für mathematische Formeln
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{bbm}
+\usepackage[output-decimal-marker={,}, detect-all=true]{siunitx} %anpassen bei englischer Version
+\usepackage{calc}
+
+
+\makeatletter
+\newcommand*\@dblLabelI {}
+\newcommand*\@dblLabelII {}
+\newcommand*\@dblequationAux {}
+
+
+%===============================================================================
+%%% Pakete für Grafiken und Positionierung
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{here}
+\usepackage{pgfplots}
+\usepackage[absolute]{textpos}
+
+%===============================================================================
+%%% Tikz-Libraries
+\usetikzlibrary{
+	external,
+	calc,trees,shadows,positioning,arrows,chains,
+	decorations.pathreplacing,
+	decorations.pathmorphing,
+	decorations.shapes,
+	decorations.text,
+	shapes,
+	shapes.geometric,
+	shapes.symbols,
+	matrix,
+	patterns,
+	intersections,
+	fit
+}
+
+
+\pgfplotsset{compat=newest}
+
+%===============================================================================
+%%% Pakete für Tabellen und Abbildungen
+\usepackage{tabularx}
+%\usepackage{ltablex}
+\usepackage{colortbl}
+\usepackage{color}
+\usepackage{makecell}%To keep spacing of text in tables
+\setcellgapes{4pt}%parameter for the spacing
+\usepackage{fancyvrb}
+\usepackage{verbdef}  % using verbatim in tables
+
+
+
+%===============================================================================
+%%% Neue Befehle 
+\newcommand{\clearemptydoublepage}{\newpage{\pagestyle{empty}\cleardoublepage}}
+
+% \monthword{#} übersetzt die Zahlen 1-12 in Monate
+\newcommand{\monthword}[1]{\ifcase#1\or Januar\or Februar\or M\"arz\or April\or
+                                        Mai\or Juni\or Juli\or August\or
+                                        September\or Oktober\or November\or Dezember\fi} 
+
+%% Legt den beim \smallskip-Befehl einzufügenden Abstand explizit fest
+% \setlength{\smallskipamount}{Abstand}                  
+% \setlength{\smallskipamount}{4mm}
+
+
+
+%===============================================================================
+%%% Formatierung Untertitel von Tabellen und Abbildungen
+\usepackage[figurename={Abb.}, tablename={Tab.}]{caption}
+
+
+%===============================================================================
+%%% Seitenlayout
+\usepackage{geometry}
+\textheight230mm		% Seitenformatierung siehe fancyhdr-Dokumentation Seite 3
+\textwidth160mm			% http://tug.ctan.org/macros/latex/contrib/fancyhdr/fancyhdr.pdf
+\voffset-5mm
+\hoffset-25mm
+\evensidemargin25mm
+\oddsidemargin25mm	
+\parindent0mm			% Einrücktiefe der ersten Zeile eines Absatzes
+\parskip1mm				% Legt den Abstand zwischen den nachfolgenden Absätzen fest. 
+\fboxrule0.1mm			% Definiert die Linienstärke für nachfolgende fbox- und framebox-Befehle
+\fboxsep1mm				% Definiert den Abstand zwischen dem Rahmen einer fbox (oder framebox) und ihrem Inhalt
+
+
+%===============================================================================
+%%% Kopf- und Fußzeile
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0.pt}
+\renewcommand{\footrulewidth}{0.pt}
+\setlength\headheight{16pt}
+\makeatletter
+\renewcommand{\chaptermark}[1]{\markboth{\thechapter\ #1}{}}	% Format des chapter in Kopfzeile
+\renewcommand{\sectionmark}[1]{\markright{\thesection\ #1}}		% Format der section in Kopfzeile
+
+	\fancypagestyle{empty}{
+		\fancyhf{}
+		\renewcommand{\headrulewidth}{0.pt}
+		\renewcommand{\footrulewidth}{0.pt}
+	}
+
+	%================================================================================
+	%%% Kopf- und Fußzeile auf Kapitelseiten
+	\fancypagestyle{plain}{%
+		\renewcommand{\headrulewidth}{0pt}%
+		\renewcommand{\footrulewidth}{0.1pt}%
+		\fancyhf{}%
+		\fancyfoot[OR]{Seite \thepage}				% Seitenzahl
+		\fancyfoot[EL]{Seite \thepage} 				% Seitenzahl
+	}
+
+	%===============================================================================
+	%%% Kopf- und Fußzeile auf ersten Seiten
+	\fancypagestyle{titelblatt}{
+	\fancyhead{}
+	\fancyfoot{}
+		\fancyhead[OL]{\setlength{\unitlength}{1mm}
+						\begin{picture}(0,0)
+							\put(0,-30){\includegraphics[width=40mm]{Bilder/0_Deckblatt/KIT_logo}}
+						\end{picture}
+					  }
+
+		\fancyhead[OR]{\begin{picture}(0,0)
+							\put(-152,-60){\parbox{15em}{\linespread{1}\scriptsize\textbf{Institut für Fahrzeugsystemtechnik}\\
+							\textbf{Leichtbautechnologie}\\
+							\scriptsize Leiter: Prof. Dr.-Ing. Frank Henning \smallskip \smallskip
+							\ \\ 
+							Rintheimer Querallee 2\\
+							76131 Karlsruhe
+							}}
+							\end{picture}
+					  }
+					  
+		\fancyfoot[OL]{
+					  {\vspace{1,0cm}\hspace{-0,7cm}\tiny KIT -- Die Forschungsuniversität in der Helmholtz-Gemeinschaft}}
+					  
+		\fancyfoot[OR]{
+					  \vspace{1,0cm} www.kit.edu\hspace{-0,7cm}}
+					  
+		\begin{tikzpicture}[remember picture, overlay]
+			\centering
+			\begin{tikzpicture}[remember picture, overlay,shift={(80mm,-115mm)}]
+				%\draw(95mm,-128.5mm) -- (95mm,133.5mm) arc (0:90:5mm) -- (-95mm,138.5mm) -- (-95mm,-123.5mm) arc (180:270:5mm) -- cycle; 
+				%\draw[red](80mm,115mm)--(80mm,-115mm)--(-80mm,-115mm)--(-80mm,115mm)--(80mm,115mm);
+				\draw(92.5mm,-127mm) -- (92.5mm,130mm)arc (0:90:5mm) --(-92.5mm,135mm) --(-92.5mm,-122mm) arc(180:270:5mm) -- (92.5mm,-127mm);
+			\end{tikzpicture};
+		\end{tikzpicture}	
+	}
+%===============================================================================
+	%%% Kopf- und Fußzeile in der Präambel
+	\fancypagestyle{preamble}{
+		\fancyhf{}
+		\fancyhead{}
+		\fancyfoot{}
+		\renewcommand{\headrulewidth}{0pt}		% Dicke des Strichs oben
+		\renewcommand{\footrulewidth}{0.1pt}			% Dicke des Strichs unten
+		
+		\fancyfoot[OR]{Seite \thepage}				% Seitenzahl
+		\fancyfoot[EL]{Seite \thepage} 				% Seitenzahl
+	}
+
+	%===============================================================================
+	%%% Kopf- und Fußzeile im Hauptteil
+	\fancypagestyle{hauptteil}{
+		\fancyhead{}
+		\fancyfoot{}
+		\renewcommand{\headrulewidth}{0.1pt}		% Dicke des Strichs oben
+		\renewcommand{\footrulewidth}{0.1pt}			% Dicke des Strichs unten
+	
+		% E Even page; O Odd page; L Left field; C Center field; R Right field;
+		% \fancyhead[...,...]{} oder \fancyfoot[...,...]{}
+		\fancyhead[EL]{\nouppercase \leftmark}		% Chapter
+		\fancyhead[EC]{}
+		\fancyhead[ER]{}
+	
+		\fancyhead[OL]{}
+		\fancyhead[OC]{}
+		\fancyhead[OR]{\nouppercase \rightmark}		% Section
+		
+		\fancyfoot[OR]{Seite \thepage}				% Seitenzahl
+		\fancyfoot[EL]{Seite \thepage} 				% Seitenzahl	
+	}
+
+%===============================================================================
+%%% Zeilenabstand
+\renewcommand{\baselinestretch}{1.2} % Faktor, der mit dem Zeilenabstand (baselineskip) aufmultipliziert wird und so den effektiven Zeilenabstand
+
+%===============================================================================
+%%% Worttrennung ausschalten
+%\sloppy						% Schaltet auf eine großzügige Formatierungsweise um, die relativ wenige Worttrennungen am Zeilenende erzeugt
+%\hyphenpenalty=10000			% To avoid hyphenation altogether (extreme penalty value)
+%\global\hyphenpenalty=100000	% global assignment
+%\exhyphenpenalty=10000			% Penalty for hyphenating a word which already contains a hyphen
+
+
+%===============================================================================
+%%% Kapitelüberschrift (Jetzt als: Kapitel 4 <0.8cm space> [...] )
+\makeatletter
+\def\@makechapterhead#1{%
+  \vspace*{50\p@}%
+  {\parindent \z@ \raggedright \normalfont
+    \ifnum \c@secnumdepth >\m@ne
+      \if@mainmatter
+        %\Huge\bfseries \@chapapp\space \thechapter
+        \Huge\bfseries \thechapter \hspace{0.8cm}%
+        %\par\nobreak
+        %\vskip 20\p@
+      \fi
+    \fi
+    \interlinepenalty\@M
+    \Huge \bfseries #1\par\nobreak
+    \vskip 40\p@
+  }}
+\makeatother
+
+
+%===============================================================================
+%%% Sonstige Pakete und Funktionen
+%\usepackage{nomencl}				% Symbolverzeichnis
+\usepackage{appendix} 				% Anhang und Formatierung im Inhaltsverzeichnis
+\usepackage{geometry}
+\usepackage{ifthen}
+\usepackage{setspace}
+\usepackage[all]{nowidow} %verhindert Hurenkinder
+
+%===============================================================================
+%%% Farben
+\definecolor{hellgrau}{rgb}{0.949,0.949,0.949}
+\definecolor{lightgray}{RGB}{231,230,230} 
+\definecolor{cadmiumgreen}{rgb}{0.0,0.42,0.24}
+\definecolor{CorpLightBlue}{RGB}{82,141,193} 
+\definecolor{CorpOrange}{RGB}{237,125,49} 
+\definecolor{CorpRed}{RGB}{194,19,15}
+\definecolor{CorpBlue}{RGB}{20,112,192}  
+\definecolor{tuerkis}{RGB}{36,163,178} 
+\definecolor{DarkOrange}{RGB}{221,117,42} 
+ 
+
+
+%===============================================================================
+%%% PDF-Optionen
+\usepackage[breaklinks=true,citebordercolor={1 1 1},linkbordercolor={1 1 1}, hidelinks]{hyperref}
+\hypersetup{bookmarksopen,	        		% Anzeige der Bookmarks mit allen Untereintraegen
+            bookmarksopenlevel=1,			% Verschachtelungstiefe der angezeigten Bookmarks
+            bookmarksnumbered,	   			% Bookmarks enthalten Ueberschriftsnummern
+            pdfhighlight=/I,	      		% Aussehen des Link-Buttons beim Druecken
+            pdfpagemode=UseOutlines,		% Legt fest, wie das Dokument geoeffnet werden soll
+            german, 	              		% Deutsche Bezeichnung der Hyperlinks            
+            pdflang=ger,            		% PDF-Sprachkennung nach RFC 3066, ger - deutsch
+         %% pdfstartview=FitV, 	  			% Anzeigemodus fuer die Startseite
+            pdfdisplaydoctitle,  	  		% Anzeige des Dokumenttitels in der Titelleiste
+}
+
+
+%%% selbst eingebundene Pakete%%%%
+
+\usepackage{mwe}
+\usepackage{graphbox}
+\usepackage{mathtools}
+\usepackage{tikz-3dplot}
+\usepackage{tkz-euclide}
+\def\centerarc[#1](#2)(#3:#4:#5){	\draw[#1] ($(#2) + ({#5*cos(#3)},{#5*sin(#3)})$) arc (#3:#4:#5);}
+\usepackage{multirow}
+\usepackage[normalem]{ulem}
+\usepackage{booktabs}
+
+\usepackage{listings}
+\usepackage{setspace}
+\definecolor{Code}{rgb}{0,0,0}
+\definecolor{Decorators}{rgb}{0.5,0.5,0.5}
+\definecolor{Numbers}{rgb}{0.5,0,0}
+\definecolor{MatchingBrackets}{rgb}{0.25,0.5,0.5}
+\definecolor{Keywords}{rgb}{0,0,1}
+\definecolor{self}{rgb}{0,0,0}
+\definecolor{Strings}{rgb}{0,0.63,0}
+%\definecolor{Comments}{rgb}{0,0.63,1}
+\definecolor{Comments}{RGB}{28,131,31}
+\definecolor{Backquotes}{rgb}{0,0,0}
+\definecolor{Classname}{rgb}{0,0,0}
+\definecolor{FunctionName}{rgb}{0,0,0}
+\definecolor{Operators}{rgb}{0,0,0}
+\definecolor{Background}{rgb}{0.98,0.98,0.98}
+\lstdefinestyle{Python222}{
+	language=Python,
+	breaklines=true,
+	postbreak=\mbox{\textcolor{red}{$\hookrightarrow$}\space},
+	numbers=left,
+	numberstyle=\footnotesize,
+	numbersep=1em,
+	xleftmargin=1em,
+	framextopmargin=2em,
+	framexbottommargin=2em,
+	showspaces=false,
+	showtabs=false,
+	showstringspaces=false,
+	frame=l,
+	tabsize=4,
+	% Basic
+	basicstyle=\ttfamily\small\setstretch{1},
+	backgroundcolor=\color{Background},
+	% Comments
+%	commentstyle=\color{Comments}\slshape,
+	commentstyle=\color{Comments},
+	% Strings
+	stringstyle=\color{darkgray},
+	morecomment=[s][\color{Strings}]{"""}{"""},
+	morecomment=[s][\color{Strings}]{'''}{'''},
+	% keywords
+	morekeywords={import,from,class,def,for,while,if,is,in,elif,else,not,and,or,print,break,continue,return,True,False,None,access,as,,del,except,exec,finally,global,import,lambda,pass,print,raise,try,assert},
+	keywordstyle={\color{Keywords}\bfseries},
+	% additional keywords
+	%morekeywords={[2]@invariant,pylab,numpy,np,scipy},
+	keywordstyle={[2]\color{Decorators}\slshape},
+	emph={self},
+	emphstyle={\color{self}\slshape},
+	%
+}
+\linespread{1.3}
+
+
+\usepackage{threeparttable,booktabs}
+\usepackage[section]{placeins}
+\usepackage{longtable}
+
+%% sorgt dafuer, dass Indizes auch im math-mode automatisch nichtkursiv gesetzt werden. 
+\def\subinrm#1{\sb{\rm#1}}
+{\catcode`\_=13 \global\let_=\subinrm}
+\mathcode`_="8000
+\def\upsubscripts{\catcode`\_=12 } \def\normalsubscripts{\catcode`\_=8 }
+
+\upsubscripts
+
+
+
+
