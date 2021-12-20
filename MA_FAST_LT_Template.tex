@@ -1,0 +1,256 @@
+\documentclass[12pt,a4paper,twoside]{book}
+\newcounter{NstopRoman}
+
+%===============================================================================
+%%% Einlesen des Formats und aller notwendiger Pakete
+\input{FormatDef}
+
+%% set options for tikzexternalize
+\tikzexternalize[shell escape=-shell-escape]
+\tikzexternalize[shell escape=pdflatex -shell-escape] %I used this method as well
+\tikzexternalize
+\tikzsetexternalprefix{tikz/}
+
+%===============================================================================
+%%% Einlesen der Symbole und Hotkeys
+\input{Makros_BScMSc}
+
+
+%===============================================================================
+%%% Informationen zum Autor, Titel, usw.
+\newcommand{\Author}{Der Autor}
+\newcommand{\Title}{Der Titel}
+\newcommand{\EnglishTitle}{Der englische Titel}
+\newcommand{\matrnr}{Die Matrikelnummer}
+\newboolean{authorismale}
+\setboolean{authorismale}{true}
+
+\author{\Author}
+\title{\Title}
+
+
+\begin{document}
+
+	\frontmatter
+	\tikzexternaldisable
+
+%===============================================================================
+%%% Titelblatt der Arbeit
+	%\begin{titlepage}
+	\pagestyle{titelblatt}
+	\vspace*{4cm}
+	\begin{center}
+		{\huge Masterarbeit}
+		\vspace{2cm}
+
+		{\Large \Title}
+		\vspace{2cm}
+
+		{\large \Author}
+		\vspace{2cm}
+
+		%\includegraphics[width=.8\textwidth]{Bilder/0_Deckblatt/frontpage.pdf}
+		Hier kommt dann das Titelbild hin
+
+		%% v-space selbst anpassen
+		\vspace{6.5cm}
+
+	\end{center}
+		\begin{tabularx}{\textwidth}{lX}
+		Projektleiter: & Der Projektleiter \\ & Leichtbautechnologie \\
+		& \\
+		Nr.: JJ-L-XXXX & \multicolumn{1}{r}{Karlsruhe, Der Monat \the\year} \\
+		\end{tabularx}
+	%\end{titlepage}
+
+%===============================================================================
+%%% Unterschriftsblatt
+   	\clearemptydoublepage
+	\pagestyle{titelblatt}
+	\vspace*{2cm}
+	\begin{center}
+		{\Large \Title\\}
+		\vspace{.2cm}
+		{\Large \EnglishTitle}
+
+		{\large \Author\\
+		Matr.-Nr.: \matrnr}
+		\vspace{.2cm}
+
+		\vfill
+		
+		\small Die Abschlussarbeit ist im engen Kontakt mit dem Institut auszuarbeiten.
+		Alle dem Institut übergebenen Exemplare werden Eigentum des Instituts.
+		Eine Einsichtnahme Dritter in diese Exemplare darf nur nach Rücksprache mit dem Institut erfolgen.
+		
+		\vspace{.2cm}
+
+		\begin{tabular}[b]{p{2,25cm}p{3,75cm}p{1,8cm}p{2,25cm}p{3,75cm}}
+		Ausgabetag: & xx.yy.zzzz & & Abgabetag: & xx.yy.zzzz \\
+		& & & & \\
+		Betreuer: & & & Projektleiter: & \\
+		& & & & \\[16mm]
+		\cline{1-2} \cline{4-5}
+		\multicolumn{2}{c}{(Prof. Dr.-Ing. Frank Henning)} & & \multicolumn{2}{c}{(Projektleiter)} \\
+		& & & & \\[16mm]
+		\cline{1-2} \cline{4-5}
+		\multicolumn{2}{c}{(Dr.-Ing. Luise Kärger)} & & \multicolumn{2}{c}{(ggf. zweiter Projektleiter)} \\
+		& & & & \\
+		Bearbeiter:  & & & Anschrift:& \\
+		& & &\ \ \ Ort & Der Ort \\
+		& & &\ \ \ Straße & Die Straße\\
+		& & &\ \ \ Telefon & Die Nummer\\[3mm]
+		\cline{1-2}
+		\multicolumn{2}{c}{(\Author)} & & & \\
+		\end{tabular}
+	\end{center}
+
+
+%===============================================================================
+%%% Aufgabenstellung ------------------------------------
+	\clearemptydoublepage
+	\pagestyle{titelblatt}
+	\vspace*{2cm}
+	\begin{center}
+
+		{\large Aufgabenstellung\\
+		für\\
+		\ifthenelse{\boolean{authorismale}}{Herrn}{Frau}
+		\Author\\
+		(Matr.-Nr.: \matrnr)\par}
+		\vspace{.2cm}
+
+		{\Large \Title\\}
+		\vspace{.2cm}
+		{\Large \EnglishTitle}
+		\vspace{1cm}
+
+	\end{center}
+
+	\noindent
+	Text der Aufgabenstellung...
+
+
+	\par
+
+
+
+
+%===============================================================================
+%%% Eigenständigkeitserklärung
+	\clearemptydoublepage
+	\pagestyle{preamble}
+	%\addcontentsline{toc}{chapter}{Erklärung}     	%% Kapitel zum Inhaltsverzeichnis hinzugefügen
+	\section*{Erklärung}
+	Hiermit versichere ich, die vorliegende Arbeit selbständig und nur mit den im Literaturverzeichnis angegebenen Quellen und Hilfsmitteln angefertigt zu haben.\par
+
+	\vspace{3cm}
+	\makebox[10cm]{\hrulefill}\\
+	\noindent Karlsruhe, den Der Tag, den Der Monat Das Jahr\par
+	%\begin{tabular}{l}
+	%	\hline
+	%	\hspace{-3,5mm} Karlsruhe, den \the\day.~\monthword{\the\month}~\the\year\par
+	%\end{tabular}
+
+%===============================================================================
+
+%%% Danksagung
+	\clearemptydoublepage
+	%\addcontentsline{toc}{chapter}{Danksagung}     	%% Kapitel zum Inhaltsverzeichnis hinzugefügen
+	\section*{Danksagung}
+
+
+	\par
+
+
+%===============================================================================
+%%% Kurzfassung
+	\selectlanguage{ngerman}
+	\clearemptydoublepage
+	%\addcontentsline{toc}{chapter}{Kurzfassung}     	%% Kapitel zum Inhaltsverzeichnis hinzugefügen
+	\section*{Kurzfassung}
+	Eine Kurzfassung einer wissenschaftlichen Arbeit ist eine Kondensierung des Inhalts auf einen Absatz, höchstens eine Seite.
+	Die Kurzfassung soll für sich stehen und die Motivation, Methoden, Ziele sowie Ergebnisse der Arbeit für jemanden präsentieren, der gerade keine Zeit hat, die ganze Arbeit zu lesen.
+	Sie muss ihm eine Entscheidung darüber ermöglichen, ob er dieses Werk (nötigenfalls bestellen und) lesen muss. Der Kurzfassung kommt eine große Bedeutung zu und sollte sehr bewusst formuliert werden, da hier die entscheidenden Kernpunkte der Arbeit klar werden müssen.
+	\begin{description}
+		\item[Kontext:]{Der Leser soll zunächst abgeholt werden. Dazu wird in ein oder zwei Sätzen eingeordnet, mit welchem Themenfeld sich die Arbeit beschäftigt.}
+		\item[Stand der Technik:]{An dieser Stelle wird sehr kurz der aktuelle Stand der Forschung zusammengefasst. Insbesondere sollten hier Unzulänglichkeiten bisheriger Ergebnisse adressiert werden, um auf die eigene Forschungsfrage hinzuarbeiten. }
+		\item[Forschungslücke:]{Hier wird die eigene Forschungsfrage herausgearbeitet. Was fehlt bisher oder welche Aspekte müssen genauer untersucht werden?}
+		\item[Lösungsansatz:]{Dieser Abschnitt beschreibt die eingesetzten Methoden - was ist der eigene Lösungsansatz für die Forschungsfrage?}
+		\item[Ergebnisse:]{Was ist bei der Arbeit herausgekommen und welche Schlüsse können daraus gezogen werden?}
+	\end{description}
+	
+	\par
+
+
+%===============================================================================
+%%% Abstract
+	%\selectlanguage{english}
+	\clearemptydoublepage
+	%\addcontentsline{toc}{chapter}{Abstract}  %% Kapitel zum Inhaltsverzeichnis hinzugefügen
+	\section*{Abstract}
+	Englische Kurzfassung. Falls die Arbeit auf Englisch geschrieben wird, muss an dieser Stelle eine deutsche Kurzfassung eingefügt werden.\par
+
+	\selectlanguage{ngerman}
+	
+%===============================================================================
+%%% Inhaltsverzeichnis
+	\clearemptydoublepage
+	\pdfbookmark{\contentsname}{toc}
+	\tableofcontents
+	\clearemptydoublepage
+
+%===============================================================================
+%%% Abkürzungsverzeichnis
+	\clearemptydoublepage
+	\include{Kapitel/Abkuerzungen}
+
+%===============================================================================
+%%% Notation
+	\clearemptydoublepage
+	\include{Kapitel/Notation}
+	\setcounter{NstopRoman}{\value{page}}
+	
+
+%===============================================================================
+%%% Hauptteil
+	\clearemptydoublepage
+	\mainmatter				% Startet die arabische Nummerierung für den eigentlichen Inhalt des Dokuments
+	%\pagenumbering{arabic}
+	\tikzexternalenable
+	%===============================================================================
+	%%% Kopf- und Fußzeilen des Hauptteils
+	\pagestyle{hauptteil}
+
+	%===============================================================================
+	%%% Kapitel
+	\clearemptydoublepage
+	\include{Kapitel/Demo}
+	\clearemptydoublepage
+	\include{Kapitel/Einleitung}
+	\clearemptydoublepage
+	\include{Kapitel/Kenntnisstand}
+	\clearemptydoublepage
+	\include{Kapitel/Methoden}
+	\clearemptydoublepage
+	\include{Kapitel/Ergebnisse}
+	\clearemptydoublepage
+	\include{Kapitel/Zusammenfassung_ausblick}
+
+
+%===============================================================================
+%%% Anhang
+	\clearemptydoublepage
+	\include{Kapitel/Anhang}
+
+%===============================================================================
+%%% Literaturverzeichnis
+	\newpage
+	\clearemptydoublepage
+	\markboth{Literaturverzeichnis}{Literaturverzeichnis}
+	\addcontentsline{toc}{chapter}{Literaturverzeichnis}   
+	\bibliographystyle{unsrtnat_german} % Bei englischen Arbeiten einfach durch {unsrtnat}ersetzen
+	\bibliography{lit}
+	%------------------------------------------------------
+\backmatter
+\end{document}
